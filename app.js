@@ -156,111 +156,200 @@ function initStatsCounters() {
 // ==========================================
 // 5. CROP SHOWCASE DATA & INTERACTION
 // ==========================================
-const CROP_DATA = {
-  moong: {
-    title: "Premium Green Moong",
-    quote: "Procured from East AP. Naturally winnowed, sun-dried, sieved, and herbal neem protected.",
-    image: "assets/green_moong.png",
-    nutrition: { protein: 24, fiber: 16, iron: 38 },
-    purity: "99.9% (Water Cleaned & Sieved)",
-    moisture: "Max 11.0%",
-    foreign: "Max 0.05%",
-    infest: "Nil (Guntur Mirchi & Neem Protected)",
-    admix: "Max 0.2%",
-    pkgRetail: "250g, 500g, 1kg eco-friendly paper pouches.",
-    pkgBulk: "25kg / 50kg Biodegradable Eco Jute bags."
-  },
-  gram: {
-    title: "Premium Black Gram",
-    quote: "East AP farm field gate sourcing. Sieved, water-cleaned, and naturally protected.",
-    image: "assets/black_gram.png",
-    nutrition: { protein: 25, fiber: 18, iron: 32 },
-    purity: "99.8% (Sieved & Water Cleaned)",
-    moisture: "Max 12.0%",
-    foreign: "Max 0.1%",
-    infest: "Nil (Guntur Mirchi & Neem Protected)",
-    admix: "Max 0.3%",
-    pkgRetail: "500g, 1kg eco-friendly paper pouches.",
-    pkgBulk: "25kg / 50kg Biodegradable Eco Jute bags."
-  },
-  sesame: {
-    title: "Sun-Dried Sesame Seeds",
-    quote: "Uniform golden seeds with rich oil contents, harvested using natural sun-drying.",
-    image: "assets/sesame.png",
-    nutrition: { protein: 18, fiber: 12, iron: 52 },
-    purity: "99.9% (Water Cleaned & Sieved)",
-    moisture: "Max 6.0%",
-    foreign: "Max 0.02%",
-    infest: "Nil (Guntur Mirchi & Neem Protected)",
-    admix: "Max 0.1%",
-    pkgRetail: "200g, 500g glass jars or paper packs.",
-    pkgBulk: "25kg / 50kg Biodegradable Eco Jute bags."
-  }
-};
-
+// ==========================================
+// 5. CROP SHOWCASE DATA & INTERACTION (DYNAMIC SLIDER)
+// ==========================================
 function initCropShowcase() {
-  const cards = document.querySelectorAll('.crop-card');
-  const specPanel = document.getElementById('crop-spec-panel');
-  const closeBtn = document.querySelector('.spec-close-btn');
-  
-  if (cards.length === 0 || !specPanel) return;
-  
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const cropKey = card.dataset.cropTarget;
-      const data = CROP_DATA[cropKey];
-      if (!data) return;
-      
-      // Update spec panel layout contents
-      document.getElementById('spec-title').textContent = data.title;
-      document.getElementById('spec-image').src = data.image;
-      document.getElementById('spec-image').alt = data.title;
-      document.getElementById('spec-quote-text').textContent = data.quote;
-      
-      // Update nutrition metrics
-      document.getElementById('nutri-p-val').textContent = `${data.nutrition.protein}g`;
-      document.getElementById('nutri-p-bar').style.width = `${data.nutrition.protein * 3}%`; // Scaling multiplier for UI visual bar
-      document.getElementById('nutri-f-val').textContent = `${data.nutrition.fiber}g`;
-      document.getElementById('nutri-f-bar').style.width = `${data.nutrition.fiber * 4}%`;
-      document.getElementById('nutri-i-val').textContent = `${data.nutrition.iron}%`;
-      document.getElementById('nutri-i-bar').style.width = `${data.nutrition.iron}%`;
-      
-      // Update commercial spec table details
-      document.getElementById('spec-purity').textContent = data.purity;
-      document.getElementById('spec-moisture').textContent = data.moisture;
-      document.getElementById('spec-foreign').textContent = data.foreign;
-      document.getElementById('spec-infest').textContent = data.infest;
-      document.getElementById('spec-admix').textContent = data.admix;
-      
-      // Update packaging text
-      document.getElementById('spec-pkg-retail').textContent = data.pkgRetail;
-      document.getElementById('spec-pkg-bulk').textContent = data.pkgBulk;
-      
-      // Scroll spec panel into view
-      specPanel.style.display = 'block';
-      specPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-  });
-  
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      specPanel.style.display = 'none';
-    });
-  }
+  const config = window.PULSE_POD_CONFIG;
+  if (!config || !config.crops) return;
 
-  // Spec Panel Inner Tab Switcher
-  const tabBtns = document.querySelectorAll('.spec-tab-btn');
+  const track = document.getElementById('slider-track');
+  const dotsContainer = document.getElementById('slider-dots');
+  if (!track || !dotsContainer) return;
+
+  track.innerHTML = '';
+  dotsContainer.innerHTML = '';
+
+  config.crops.forEach((crop, index) => {
+    // 1. Create the slide element
+    const slide = document.createElement('div');
+    slide.className = `crop-slide ${index === 0 ? 'active' : ''}`;
+    slide.dataset.crop = crop.key;
+
+    // Build the spec panel inside each slide dynamically
+    slide.innerHTML = `
+      <div class="slide-layout grid-two">
+        <div class="slide-visual">
+          <img src="${crop.image}" alt="${crop.title}">
+          <div class="spec-quote-box">
+            <span class="quote-mark">“</span>
+            <p class="spec-quote-text">${crop.quote}</p>
+          </div>
+        </div>
+        <div class="spec-info">
+          <span class="crop-category">${crop.category}</span>
+          <h3>${crop.title}</h3>
+          
+          <div class="spec-tabs">
+            <button class="spec-tab-btn active" data-tab="nutrition-${crop.key}">Nutritional Profile</button>
+            <button class="spec-tab-btn" data-tab="commercial-${crop.key}">Commercial Specs</button>
+            <button class="spec-tab-btn" data-tab="packaging-${crop.key}">Packaging Standards</button>
+          </div>
+          
+          <!-- Tab Content: Nutrition -->
+          <div id="tab-nutrition-${crop.key}" class="tab-pane active">
+            <div class="nutri-bar">
+              <span class="bar-label">Protein (per 100g) <strong>${crop.nutrition.protein.value}</strong></span>
+              <div class="bar-outer">
+                <div class="bar-inner" style="width: ${crop.nutrition.protein.percentage * 3}%;"></div>
+              </div>
+            </div>
+            <div class="nutri-bar">
+              <span class="bar-label">Dietary Fiber (per 100g) <strong>${crop.nutrition.fiber.value}</strong></span>
+              <div class="bar-outer">
+                <div class="bar-inner" style="width: ${crop.nutrition.fiber.percentage * 4}%;"></div>
+              </div>
+            </div>
+            <div class="nutri-bar">
+              <span class="bar-label">Iron (DV %) <strong>${crop.nutrition.iron.value}</strong></span>
+              <div class="bar-outer">
+                <div class="bar-inner" style="width: ${crop.nutrition.iron.percentage}%;"></div>
+              </div>
+            </div>
+            <p class="spec-disclaimer">*Nutritional figures represent averages sourced from seasonal laboratory reports.</p>
+          </div>
+          
+          <!-- Tab Content: Commercial Specs -->
+          <div id="tab-commercial-${crop.key}" class="tab-pane">
+            <table class="spec-table">
+              <tr><td>Purity Rating</td><td>${crop.specs.purity}</td></tr>
+              <tr><td>Moisture Content</td><td>${crop.specs.moisture}</td></tr>
+              <tr><td>Foreign Matter</td><td>${crop.specs.foreign}</td></tr>
+              <tr><td>Weevil Cut / Infestation</td><td>${crop.specs.infest}</td></tr>
+              <tr><td>Admixture Grade</td><td>${crop.specs.admix}</td></tr>
+            </table>
+          </div>
+          
+          <!-- Tab Content: Packaging -->
+          <div id="tab-packaging-${crop.key}" class="tab-pane">
+            <div class="packaging-options">
+              <div class="pkg-card">
+                <h4>Quick Commerce Retail</h4>
+                <p>${crop.pkgRetail}</p>
+              </div>
+              <div class="pkg-card">
+                <h4>B2B Bulk Wholesale</h4>
+                <p>${crop.pkgBulk}</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#calculator" class="btn btn-primary spec-cta">Estimate Bulk Quote</a>
+        </div>
+      </div>
+    `;
+    track.appendChild(slide);
+
+    // 2. Create the dots indicator
+    const dot = document.createElement('button');
+    dot.className = `dot-indicator ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    dot.addEventListener('click', () => {
+      goToSlide(index);
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  // Tab switching click handlers inside slides
+  const tabBtns = track.querySelectorAll('.spec-tab-btn');
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
+      const paneContainer = btn.closest('.spec-info');
+      paneContainer.querySelectorAll('.spec-tab-btn').forEach(b => b.classList.remove('active'));
+      paneContainer.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
       btn.classList.add('active');
-      
       const tabTarget = btn.dataset.tab;
-      const specInfo = btn.closest('.spec-info');
-      specInfo.querySelectorAll('.tab-pane').forEach(pane => {
-        pane.classList.remove('active');
-      });
-      specInfo.querySelector(`#tab-${tabTarget}`).classList.add('active');
+      paneContainer.querySelector(`#${tabTarget}`).classList.add('active');
+    });
+  });
+
+  // Slider Navigation Logic
+  let currentSlide = 0;
+  const totalSlides = config.crops.length;
+  const prevBtn = document.querySelector('.prev-arrow');
+  const nextBtn = document.querySelector('.next-arrow');
+
+  function goToSlide(index) {
+    currentSlide = index;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Update dots indicators
+    const dots = dotsContainer.querySelectorAll('.dot-indicator');
+    dots.forEach((dot, idx) => {
+      if (idx === currentSlide) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+
+    // Update active class on slides for transition effects
+    const slides = track.querySelectorAll('.crop-slide');
+    slides.forEach((slide, idx) => {
+      if (idx === currentSlide) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentSlide - 1);
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentSlide + 1);
+    });
+  }
+
+  // Touch swipe support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const swipeThreshold = 50; // minimum distance in px to trigger swipe
+    if (touchStartX - touchEndX > swipeThreshold) {
+      goToSlide(currentSlide + 1); // Swipe left -> Next
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+      goToSlide(currentSlide - 1); // Swipe right -> Previous
+    }
+  }
+
+  // Update calculator selection dynamically on CTA click
+  track.querySelectorAll('.spec-cta').forEach(cta => {
+    cta.addEventListener('click', () => {
+      const calcCropSelect = document.getElementById('calc-crop');
+      const slideCrop = cta.closest('.crop-slide').dataset.crop;
+      if (calcCropSelect && slideCrop) {
+        calcCropSelect.value = slideCrop;
+        calcCropSelect.dispatchEvent(new Event('change'));
+      }
     });
   });
 }
@@ -345,13 +434,11 @@ function initSupplyChainVisualizer() {
 // ==========================================
 // 7. B2B LOGISTICS & SAVINGS CALCULATOR
 // ==========================================
-const BASE_PRICES = {
-  moong: 78000,   // price per Metric Ton (INR)
-  gram: 84000,
-  sesame: 112000
-};
-
 function initB2BCalculator() {
+  const config = window.PULSE_POD_CONFIG;
+  if (!config || !config.prices) return;
+  const BASE_PRICES = config.prices;
+
   const cropSelect = document.getElementById('calc-crop');
   const qtySlider = document.getElementById('calc-quantity');
   const destSelect = document.getElementById('calc-destination');
@@ -373,7 +460,7 @@ function initB2BCalculator() {
     qtyDisplay.textContent = `${qty.toFixed(1)} Ton${qty > 1 ? 's' : ''}`;
     
     // Price calculations
-    const basePrice = BASE_PRICES[crop];
+    const basePrice = BASE_PRICES[crop] || 78000;
     const totalCost = basePrice * qty;
     
     // Savings calculations (Middleman premium ranges from 16% to 22% depending on channel)
