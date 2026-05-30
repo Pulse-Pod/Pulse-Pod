@@ -10,10 +10,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Preload dynamic slider images to prevent late loading -->
-  <link rel="preload" as="image" href="assets/green_moong.png">
-  <link rel="preload" as="image" href="assets/black_gram.png">
-  <link rel="preload" as="image" href="assets/sesame.png">
   
   <!-- CSS Stylesheet link -->
   <link rel="stylesheet" href="styles.css">
@@ -135,29 +131,120 @@
       <div class="section-intro text-center">
         <span class="sub-title">Our Harvest</span>
         <h2 class="section-headline">Purity Profiles</h2>
-        <p class="section-desc">Swipe or click the arrows to explore details of our core harvests.</p>
+        <p class="section-desc">Select a seed to display its nutritional profiles, B2B purity ratings, and packaging standards.</p>
       </div>
 
-      <!-- Products Carousel Slider -->
-      <div class="slider-viewport-wrapper">
-        <button class="slider-arrow prev-arrow" aria-label="Previous Slide">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        
-        <div class="slider-viewport">
-          <div class="slider-track" id="slider-track">
-            <!-- Slides will be rendered dynamically by JavaScript from products-config.js -->
+      <div class="crops-grid">
+        <!-- Crop Item: Green Moong -->
+        <div class="crop-card" data-crop-target="moong">
+          <div class="crop-img-container">
+            <img src="assets/green_moong.png" alt="Organic Green Moong Beans">
+          </div>
+          <div class="crop-card-content">
+            <span class="crop-category">Vigna Radiata</span>
+            <h3>Green Moong</h3>
+            <p>Whole polished grains. Exceptionally rich in dietary protein, vitamins, and minerals. Perfect for wellness markets and retail shelves.</p>
+            <div class="crop-card-footer">
+              <span>Moisture: &lt;11%</span>
+              <span class="arrow-icon">→</span>
+            </div>
           </div>
         </div>
 
-        <button class="slider-arrow next-arrow" aria-label="Next Slide">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+        <!-- Crop Item: Black Gram -->
+        <div class="crop-card" data-crop-target="gram">
+          <div class="crop-img-container">
+            <img src="assets/black_gram.png" alt="Organic Black Gram Dal">
+          </div>
+          <div class="crop-card-content">
+            <span class="crop-category">Vigna Mungo</span>
+            <h3>Black Gram</h3>
+            <p>Resilient outer shell containing a premium, protein-dense core. Processed with advanced cleaning to remove standard clay impurities.</p>
+            <div class="crop-card-footer">
+              <span>Purity: 99.9%</span>
+              <span class="arrow-icon">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crop Item: Sesame -->
+        <div class="crop-card" data-crop-target="sesame">
+          <div class="crop-img-container">
+            <img src="assets/sesame.png" alt="Golden Sesame Seeds">
+          </div>
+          <div class="crop-card-content">
+            <span class="crop-category">Sesamum Indicum</span>
+            <h3>Sesame Seeds</h3>
+            <p>Golden-husk sesame with a premium oil concentration. Sorted optically to ensure absolute color uniformity and taste purity.</p>
+            <div class="crop-card-footer">
+              <span>Organic Grade A</span>
+              <span class="arrow-icon">→</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Slider Indicators (Dots) -->
-      <div class="slider-dots" id="slider-dots">
-        <!-- Rendered dynamically -->
+      <!-- Detail Info Overlay Pane (Dynamic content updated via JavaScript) -->
+      <div id="crop-spec-panel" class="crop-spec-pane" style="display: none;">
+        <div class="spec-close-btn">&times;</div>
+        <div class="spec-layout grid-two">
+          <div class="spec-visual">
+            <img id="spec-image" src="" alt="Selected Product Spec">
+            <div class="spec-quote-box">
+              <span class="quote-mark">“</span>
+              <p id="spec-quote-text"></p>
+            </div>
+          </div>
+          <div class="spec-info">
+            <h3 id="spec-title">Crop Name</h3>
+            <div class="spec-tabs">
+              <button class="spec-tab-btn active" data-tab="nutrition">Nutritional Profile</button>
+              <button class="spec-tab-btn" data-tab="commercial">Commercial Specs</button>
+              <button class="spec-tab-btn" data-tab="packaging">Packaging Standards</button>
+            </div>
+            
+            <div id="tab-nutrition" class="tab-pane active">
+              <div class="nutri-bar">
+                <span class="bar-label">Protein (per 100g) <strong id="nutri-p-val">24g</strong></span>
+                <div class="bar-outer"><div id="nutri-p-bar" class="bar-inner" style="width: 24%;"></div></div>
+              </div>
+              <div class="nutri-bar">
+                <span class="bar-label">Dietary Fiber (per 100g) <strong id="nutri-f-val">16g</strong></span>
+                <div class="bar-outer"><div id="nutri-f-bar" class="bar-inner" style="width: 16%;"></div></div>
+              </div>
+              <div class="nutri-bar">
+                <span class="bar-label">Iron (DV %) <strong id="nutri-i-val">35%</strong></span>
+                <div class="bar-outer"><div id="nutri-i-bar" class="bar-inner" style="width: 35%;"></div></div>
+              </div>
+              <p class="spec-disclaimer">*Nutritional figures represent averages sourced from seasonal third-party laboratory reports.</p>
+            </div>
+
+            <div id="tab-commercial" class="tab-pane">
+              <table class="spec-table">
+                <tr><td>Purity Rating</td><td id="spec-purity">99.9% (Sieved & Water Cleaned)</td></tr>
+                <tr><td>Moisture Content</td><td id="spec-moisture">Max 12.0%</td></tr>
+                <tr><td>Foreign Matter</td><td id="spec-foreign">Max 0.1%</td></tr>
+                <tr><td>Weevil Cut / Infestation</td><td id="spec-infest">Nil (Guntur Mirchi & Neem Protected)</td></tr>
+                <tr><td>Admixture Grade</td><td id="spec-admix">Max 0.5%</td></tr>
+              </table>
+            </div>
+
+            <div id="tab-packaging" class="tab-pane">
+              <div class="packaging-options">
+                <div class="pkg-card">
+                  <h4>Quick Commerce Retail</h4>
+                  <p id="spec-pkg-retail">250g, 500g, 1kg eco-friendly paper pouches (Neem preserved).</p>
+                </div>
+                <div class="pkg-card">
+                  <h4>B2B Bulk Wholesale</h4>
+                  <p id="spec-pkg-bulk">25kg / 50kg Eco-friendly breathable Jute bags for environmental safety.</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="#calculator" class="btn btn-primary spec-cta">Estimate Bulk Quote</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -356,8 +443,6 @@
     </div>
   </footer>
 
-  <!-- Products Configuration data -->
-  <script src="products-config.js"></script>
   <!-- App Main Javascript link -->
   <script src="app.js"></script>
 </body>
