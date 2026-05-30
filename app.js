@@ -178,7 +178,7 @@ function initCropShowcase() {
 
     // Build the spec panel inside each slide dynamically
     slide.innerHTML = `
-      <div class="slide-layout grid-two">
+      <div class="slide-layout">
         <div class="slide-visual">
           <img src="${crop.image}" alt="${crop.title}">
           <div class="spec-quote-box">
