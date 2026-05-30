@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse & Pod | Premium Grains, Sourced Directly, Sorted Honestly</title>
+  <meta name="description" content="Project Pulse & Pod connects Indian farm fields with quick commerce and local markets, supplying pristine, de-infested Green Moong, Black Gram, and Sesame.">
+  
+  <!-- Modern Editorial & Utility Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet link -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-moong">
+
+  <!-- Preloader Screen -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <div class="pulse-logo-svg">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--primary-color)" stroke-width="2" class="outer-ring"/>
+          <path d="M50 25 C55 35, 60 45, 50 75 C40 45, 45 35, 50 25 Z" fill="var(--primary-color)" class="inner-seed"/>
+          <circle cx="50" cy="20" r="4" fill="var(--primary-color)" class="sprout-dot"/>
+        </svg>
+      </div>
+      <h2 class="preloader-title">Pulse & Pod</h2>
+      <p class="preloader-subtitle">Loading natural perfection...</p>
+      <div class="loader-bar-bg">
+        <div class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient Light/Dark & Theme Controller Panel -->
+  <div class="theme-bar">
+    <button id="theme-toggle" class="icon-btn" title="Toggle Light/Dark Mode" aria-label="Toggle Theme">
+      <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+
+  <!-- Header Navigation -->
+  <header id="main-header" class="site-header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <svg viewBox="0 0 50 50" width="32" height="32" fill="currentColor">
+          <path d="M25 5 C28 15, 33 25, 25 45 C17 25, 22 15, 25 5 Z" />
+        </svg>
+        <span>Pulse & Pod</span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="#story">Story</a>
+        <a href="#crops">Crops</a>
+        <a href="#sourcing">Supply Chain</a>
+        <a href="#calculator" class="btn-nav">Savings Calc</a>
+      </nav>
+      
+      <button class="mobile-nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="hero-tag animate-up">Direct-From-Field Purity</span>
+        <h1 class="hero-title animate-up">Fields of Trust.<br>Pods of Purity.</h1>
+        <p class="hero-description animate-up">
+          We procure Green Moong, Black Gram, and Sesame directly from the fields of East Andhra Pradesh. Paid fairly at fields or hubs after quality checks, cleaned naturally (winnowing, sieving, water-cleaned), sun-dried, neem-preserved, and packed in eco-friendly jute bags.
+        </p>
+        <div class="hero-actions animate-up">
+          <a href="#crops" class="btn btn-primary">Our Products</a>
+          <a href="#calculator" class="btn btn-outline">Check B2B Quotes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farmer Sourcing Story -->
+  <section id="story" class="section-story">
+    <div class="section-container grid-two">
+      <div class="story-image-pane">
+        <div class="organic-frame">
+          <img src="assets/hero_background.png" alt="Indian agriculture crops field" class="rounded-img">
+          <div class="badge-float">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>100% Direct Sourced</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-text-pane">
+        <span class="sub-title">Empowering the Root</span>
+        <h2 class="section-headline">Fair Payouts at the Farm Gate</h2>
+        <p class="lead-text">
+          We source directly from farmers in East Andhra Pradesh, conducting quality checks and making fair payments right at the fields or at our procurement hubs, ensuring transparent payouts without middleman brokers.
+        </p>
+        <div class="metrics-grid" id="metrics-trigger">
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter" data-target="450">0</span>+</div>
+            <div class="metric-label">Farmers Supported</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">₹<span class="counter" data-target="1.2">0</span>Cr+</div>
+            <div class="metric-label">Disbursed Directly</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter" data-target="1200">0</span>+</div>
+            <div class="metric-label">Acres Cultivated</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num"><span class="counter" data-target="850">0</span>T+</div>
+            <div class="metric-label">Tons Supplied</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Crops Showcase -->
+  <section id="crops" class="section-crops">
+    <div class="section-container">
+      <div class="section-intro text-center">
+        <span class="sub-title">Our Harvest</span>
+        <h2 class="section-headline">Purity Profiles</h2>
+        <p class="section-desc">Select a seed to display its nutritional profiles, B2B purity ratings, and packaging standards.</p>
+      </div>
+
+      <div class="crops-grid">
+        <!-- Crop Item: Green Moong -->
+        <div class="crop-card" data-crop-target="moong">
+          <div class="crop-img-container">
+            <img src="assets/green_moong.png" alt="Organic Green Moong Beans">
+          </div>
+          <div class="crop-card-content">
+            <span class="crop-category">Vigna Radiata</span>
+            <h3>Green Moong</h3>
+            <p>Whole polished grains. Exceptionally rich in dietary protein, vitamins, and minerals. Perfect for wellness markets and retail shelves.</p>
+            <div class="crop-card-footer">
+              <span>Moisture: &lt;11%</span>
+              <span class="arrow-icon">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crop Item: Black Gram -->
+        <div class="crop-card" data-crop-target="gram">
+          <div class="crop-img-container">
+            <img src="assets/black_gram.png" alt="Organic Black Gram Dal">
+          </div>
+          <div class="crop-card-content">
+            <span class="crop-category">Vigna Mungo</span>
+            <h3>Black Gram</h3>
+            <p>Resilient outer shell containing a premium, protein-dense core. Processed with advanced cleaning to remove standard clay impurities.</p>
+            <div class="crop-card-footer">
+              <span>Purity: 99.9%</span>
+              <span class="arrow-icon">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crop Item: Sesame -->
+        <div class="crop-card" data-crop-target="sesame">
+          <div class="crop-img-container">
+            <img src="assets/sesame.png" alt="Golden Sesame Seeds">
+          </div>
+          <div class="crop-card-content">
+            <span class="crop-category">Sesamum Indicum</span>
+            <h3>Sesame Seeds</h3>
+            <p>Golden-husk sesame with a premium oil concentration. Sorted optically to ensure absolute color uniformity and taste purity.</p>
+            <div class="crop-card-footer">
+              <span>Organic Grade A</span>
+              <span class="arrow-icon">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Info Overlay Pane (Dynamic content updated via JavaScript) -->
+      <div id="crop-spec-panel" class="crop-spec-pane" style="display: none;">
+        <div class="spec-close-btn">&times;</div>
+        <div class="spec-layout grid-two">
+          <div class="spec-visual">
+            <img id="spec-image" src="" alt="Selected Product Spec">
+            <div class="spec-quote-box">
+              <span class="quote-mark">“</span>
+              <p id="spec-quote-text"></p>
+            </div>
+          </div>
+          <div class="spec-info">
+            <h3 id="spec-title">Crop Name</h3>
+            <div class="spec-tabs">
+              <button class="spec-tab-btn active" data-tab="nutrition">Nutritional Profile</button>
+              <button class="spec-tab-btn" data-tab="commercial">Commercial Specs</button>
+              <button class="spec-tab-btn" data-tab="packaging">Packaging Standards</button>
+            </div>
+            
+            <div id="tab-nutrition" class="tab-pane active">
+              <div class="nutri-bar">
+                <span class="bar-label">Protein (per 100g) <strong id="nutri-p-val">24g</strong></span>
+                <div class="bar-outer"><div id="nutri-p-bar" class="bar-inner" style="width: 24%;"></div></div>
+              </div>
+              <div class="nutri-bar">
+                <span class="bar-label">Dietary Fiber (per 100g) <strong id="nutri-f-val">16g</strong></span>
+                <div class="bar-outer"><div id="nutri-f-bar" class="bar-inner" style="width: 16%;"></div></div>
+              </div>
+              <div class="nutri-bar">
+                <span class="bar-label">Iron (DV %) <strong id="nutri-i-val">35%</strong></span>
+                <div class="bar-outer"><div id="nutri-i-bar" class="bar-inner" style="width: 35%;"></div></div>
+              </div>
+              <p class="spec-disclaimer">*Nutritional figures represent averages sourced from seasonal third-party laboratory reports.</p>
+            </div>
+
+            <div id="tab-commercial" class="tab-pane">
+              <table class="spec-table">
+                <tr><td>Purity Rating</td><td id="spec-purity">99.9% (Sieved & Water Cleaned)</td></tr>
+                <tr><td>Moisture Content</td><td id="spec-moisture">Max 12.0%</td></tr>
+                <tr><td>Foreign Matter</td><td id="spec-foreign">Max 0.1%</td></tr>
+                <tr><td>Weevil Cut / Infestation</td><td id="spec-infest">Nil (Guntur Mirchi & Neem Protected)</td></tr>
+                <tr><td>Admixture Grade</td><td id="spec-admix">Max 0.5%</td></tr>
+              </table>
+            </div>
+
+            <div id="tab-packaging" class="tab-pane">
+              <div class="packaging-options">
+                <div class="pkg-card">
+                  <h4>Quick Commerce Retail</h4>
+                  <p id="spec-pkg-retail">250g, 500g, 1kg eco-friendly paper pouches (Neem preserved).</p>
+                </div>
+                <div class="pkg-card">
+                  <h4>B2B Bulk Wholesale</h4>
+                  <p id="spec-pkg-bulk">25kg / 50kg Eco-friendly breathable Jute bags for environmental safety.</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="#calculator" class="btn btn-primary spec-cta">Estimate Bulk Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Supply Chain Visualizer -->
+  <section id="sourcing" class="section-sourcing">
+    <div class="section-container">
+      <div class="section-intro text-center">
+        <span class="sub-title">Processing Philosophy</span>
+        <h2 class="section-headline">The Seed Lifecycle</h2>
+        <p class="section-desc">Click each processing checkpoint to trace the journey from soil boundary to packaging box.</p>
+      </div>
+
+      <!-- Process Path Tracker Diagram -->
+      <div class="sourcing-visualizer">
+        <div class="timeline-navigation">
+          <div class="timeline-step active" data-step="1">
+            <div class="step-circle">1</div>
+            <div class="step-label">Field Sourcing</div>
+          </div>
+          <div class="timeline-step" data-step="2">
+            <div class="step-circle">2</div>
+            <div class="step-label">Natural Cleaning</div>
+          </div>
+          <div class="timeline-step" data-step="3">
+            <div class="step-circle">3</div>
+            <div class="step-label">Sun Drying & Herbs</div>
+          </div>
+          <div class="timeline-step" data-step="4">
+            <div class="step-circle">4</div>
+            <div class="step-label">Jute Packaging</div>
+          </div>
+          <div class="timeline-step" data-step="5">
+            <div class="step-circle">5</div>
+            <div class="step-label">Market Delivery</div>
+          </div>
+        </div>
+
+        <div class="timeline-progress-bar">
+          <div class="progress-fill" style="width: 0%;"></div>
+        </div>
+
+        <!-- Detail Glass Cards -->
+        <div class="step-detail-container">
+          <div id="step-detail-card" class="step-detail-card">
+            <div class="detail-layout grid-two">
+              <div class="detail-img">
+                <img id="step-img" src="assets/hero_background.png" alt="Farm gate collection">
+              </div>
+              <div class="detail-text">
+                <span class="step-num-badge">Phase 01</span>
+                <h3 id="step-title-text">Fair farm gate procurement</h3>
+                <p id="step-desc-text">
+                  Our quality managers inspect crop fields directly. We weigh utilizing digital equipment and pay farmers instantly using direct bank transfers, protecting them from market commissions.
+                </p>
+                <div class="step-metric">
+                  <span class="metric-badge-label">Direct Impact:</span>
+                  <span id="step-metric-value" class="metric-badge-val">90% of value returns to farmer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Wholesale Calculator -->
+  <section id="calculator" class="section-calculator">
+    <div class="section-container grid-two">
+      <div class="calc-inputs-pane">
+        <span class="sub-title">B2B Purchasing Manager Tool</span>
+        <h2 class="section-headline">Margin & Logistics Estimator</h2>
+        <p class="calc-sub">Optimize transport plans and calculate savings by sourcing directly from Pulse & Pod fields.</p>
+        
+        <form class="calc-form">
+          <div class="form-group">
+            <label for="calc-crop">Select Crop</label>
+            <select id="calc-crop" class="form-control">
+              <option value="moong">Green Moong</option>
+              <option value="gram">Black Gram</option>
+              <option value="sesame">Sesame Seeds</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-quantity">Required Quantity: <strong id="qty-display">1.0 Ton</strong></label>
+            <input type="range" id="calc-quantity" min="0.5" max="30.0" step="0.5" value="1.0" class="range-slider">
+            <div class="slider-marks">
+              <span>0.5 Ton</span>
+              <span>15 Tons</span>
+              <span>30 Tons</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-destination">Delivery Channel Hub</label>
+            <select id="calc-destination" class="form-control">
+              <option value="zepto">Zepto Dark Store Hub (Bangalore)</option>
+              <option value="blinkit">Blinkit Fulfillment Center (Mumbai)</option>
+              <option value="bigbasket">Bigbasket Central Warehouse (Delhi)</option>
+              <option value="local">Local Wholesale/Gated Community Market</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="calc-results-pane">
+        <div class="glass-results-card">
+          <h3>Logistics Summary</h3>
+          <div class="result-row">
+            <span>Estimated Direct Cost</span>
+            <strong id="result-cost">₹78,000</strong>
+          </div>
+          <div class="result-row">
+            <span>Middleman Premium Saved</span>
+            <strong id="result-savings" class="highlight-green">₹14,500 (15.6%)</strong>
+          </div>
+          <div class="result-row">
+            <span>Packaging Footprint</span>
+            <strong id="result-packaging">40 Bags (25kg paper multi-wall)</strong>
+          </div>
+          <div class="result-row">
+            <span>FCL Truck Space</span>
+            <strong id="result-truck">1/10 of a 10-Ton Truck</strong>
+          </div>
+          
+          <hr class="calc-divider">
+
+          <div class="farmer-fairness-score">
+            <div class="score-header">
+              <span>Farmer Payout Contribution</span>
+              <strong id="result-farmer-payout">₹68,400</strong>
+            </div>
+            <div class="score-meter-bg">
+              <div id="score-meter-fill" class="score-meter-fill" style="width: 88%;"></div>
+            </div>
+            <p class="score-caption">88% of your purchasing capital flows directly into grower accounts.</p>
+          </div>
+          
+          <button id="calc-cta-btn" class="btn btn-primary btn-block">Lock In Dynamic Quote</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Clean Footer Section -->
+  <footer class="site-footer">
+    <div class="section-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <svg viewBox="0 0 50 50" width="32" height="32" fill="currentColor">
+              <path d="M25 5 C28 15, 33 25, 25 45 C17 25, 22 15, 25 5 Z" />
+            </svg>
+            <span>Pulse & Pod</span>
+          </a>
+          <p>Clean grains sourced straight from field boundaries. Protecting farmers, delivering high-purity food to modern markets.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Farming Hubs</h4>
+          <ul>
+            <li><a href="#story">Direct Sourcing Map</a></li>
+            <li><a href="#story">Farmer Fair-Pay Initiative</a></li>
+            <li><a href="#sourcing">Cleaning Facilities</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Commercial</h4>
+          <ul>
+            <li><a href="#crops">Specifications Sheets</a></li>
+            <li><a href="#calculator">Margins Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Contact & Certifications</h4>
+          <ul>
+            <li><p>procurement@pulseandpod.com</p></li>
+            <li><p>99.9% Laser Color Sorted</p></li>
+            <li><p>CO₂ Safe De-infested</p></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Pulse & Pod Private Limited. All Rights Reserved. Sourced honestly, verified clinically.</p>
+        <div class="legal-links">
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">FSSAI License Info</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Main Javascript link -->
+  <script src="app.js"></script>
+</body>
+</html>
