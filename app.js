@@ -68,12 +68,16 @@ function initThemeToggles() {
   
   // Theme Toggle: Light/Dark Mode
   if (themeToggle) {
-    // Check local storage for preference
-    const isDark = localStorage.getItem('theme-dark') === 'true';
+    // Check local storage for preference, default to true (dark) if not set
+    const isDark = localStorage.getItem('theme-dark') !== 'false';
     if (isDark) {
       body.classList.add('dark');
       sunIcon.style.display = 'none';
       moonIcon.style.display = 'block';
+    } else {
+      body.classList.remove('dark');
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
     }
     
     themeToggle.addEventListener('click', () => {
