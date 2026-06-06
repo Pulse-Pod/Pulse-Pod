@@ -321,7 +321,6 @@ const BASE_PRICES = {
 function initB2BCalculator() {
   const cropSelect = document.getElementById('calc-crop');
   const qtySlider = document.getElementById('calc-quantity');
-  const destSelect = document.getElementById('calc-destination');
   const qtyDisplay = document.getElementById('qty-display');
   const costDisplay = document.getElementById('result-cost');
   const savingsDisplay = document.getElementById('result-savings');
@@ -335,7 +334,6 @@ function initB2BCalculator() {
   function updateCalculator() {
     const crop = cropSelect.value;
     const qty = parseFloat(qtySlider.value);
-    const dest = destSelect.value;
     
     qtyDisplay.textContent = `${qty.toFixed(1)} Ton${qty > 1 ? 's' : ''}`;
     
@@ -343,10 +341,8 @@ function initB2BCalculator() {
     const basePrice = BASE_PRICES[crop];
     const totalCost = basePrice * qty;
     
-    // Savings calculations (Middleman premium ranges from 16% to 22% depending on channel)
-    let markupFactor = 0.18; // Default 18% saving
-    if (dest === 'zepto' || dest === 'blinkit') markupFactor = 0.21;
-    if (dest === 'local') markupFactor = 0.16;
+    // Savings calculations (Middleman premium averages ~18%)
+    const markupFactor = 0.18;
     
     const middlemanCost = totalCost * (1 + markupFactor);
     const savings = middlemanCost - totalCost;
@@ -389,7 +385,7 @@ function initB2BCalculator() {
   // Attach event handlers
   cropSelect.addEventListener('change', updateCalculator);
   qtySlider.addEventListener('input', updateCalculator);
-  destSelect.addEventListener('change', updateCalculator);
+
   
   // Form submission handler
   document.getElementById('calc-cta-btn').addEventListener('click', (e) => {
