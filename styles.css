@@ -1191,6 +1191,20 @@ textarea.form-control {
   color: var(--primary-color);
 }
 
+.footer-email-link {
+  font-weight: 500;
+  color: var(--accent-color, var(--primary-color)) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(45, 75, 57, 0.3);
+  transition: all 0.3s ease;
+}
+
+.footer-email-link:hover {
+  text-decoration-color: var(--primary-color);
+  letter-spacing: 0.02em;
+}
+
 .footer-bottom {
   border-top: 1px solid var(--border-color);
   padding-top: 30px;
