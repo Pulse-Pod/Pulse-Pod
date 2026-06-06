@@ -186,35 +186,6 @@ button, input, select, textarea {
   to { opacity: 1; }
 }
 
-/* --- Floating Theme Panel --- */
-.theme-bar {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-.icon-btn {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-}
-
-.icon-btn:hover {
-  transform: scale(1.05);
-  border-color: var(--primary-color);
-  background: var(--glass-bg);
-}
 
 /* --- Header / Navigation --- */
 .site-header {

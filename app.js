@@ -6,7 +6,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initPreloader();
   initHeaderScroll();
-  initThemeToggles();
   initStatsCounters();
   initCropShowcase();
   initSupplyChainVisualizer();
@@ -58,44 +57,12 @@ function initHeaderScroll() {
 }
 
 // ==========================================
-// 3. THEME TOGGLES & CROP SPECIFIC THEMES
+// 3. DARK MODE (Permanent — no toggle needed)
 // ==========================================
-function initThemeToggles() {
-  const body = document.body;
-  const themeToggle = document.getElementById('theme-toggle');
-  const sunIcon = document.querySelector('.sun-icon');
-  const moonIcon = document.querySelector('.moon-icon');
-  
-  // Theme Toggle: Light/Dark Mode
-  if (themeToggle) {
-    // Check local storage for preference, default to true (dark) if not set
-    const isDark = localStorage.getItem('theme-dark') !== 'false';
-    if (isDark) {
-      body.classList.add('dark');
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
-    } else {
-      body.classList.remove('dark');
-      sunIcon.style.display = 'block';
-      moonIcon.style.display = 'none';
-    }
-    
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      const darkActive = body.classList.contains('dark');
-      localStorage.setItem('theme-dark', darkActive);
-      
-      if (darkActive) {
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-      } else {
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-      }
-    });
-  }
+// Dark mode is set directly on the <body> tag in index.html.
+// No runtime theme switching is required.
 
-}
+
 
 // ==========================================
 // 4. STATS COUNTERS (INTERSECTION OBSERVER)
